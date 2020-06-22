@@ -1,40 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Search.css";
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
 
-  const loadAllMovies = () => {
+  const loadAllMovies = (movie) => {
     fetch("http://localhost:5000/api/search", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: "Age of Adaline",
+        title: movie,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
+        data = data.filter(
+          (value, index, self) =>
+            self.map((i) => i.Title).indexOf(value.Title) === index
+        );
         setMovies(data);
       });
   };
 
-  useEffect(() => {
-    loadAllMovies();
-  }, []);
+  const handleChange = (event) => {
+    if (event.target.value === "") {
+      setMovies([]);
+    } else {
+      loadAllMovies(event.target.value);
+    }
+  };
 
   return (
     <React.Fragment>
       <div className="search-wrapper">
-        <input type="text" placeholder="Start typing movie name here ..." />
+        <input
+          type="text"
+          placeholder="Start typing movie name ..."
+          onChange={handleChange}
+        />
       </div>
       <div className="movies-wrapper">
         {movies.map((movie, index) => {
           return (
             <div key={index} className="single-movie">
-              <h2>Location {index+1}</h2>
-              <p>{movie["Locations"]}</p>
+              <h2>{movie["Title"]}</h2>
+              <span className="pill">{movie["Release Year"]}</span>
             </div>
           );
         })}
