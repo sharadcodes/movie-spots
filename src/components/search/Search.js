@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Search.css";
+import { Link } from "react-router-dom";
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
@@ -45,7 +46,7 @@ const Search = () => {
         {movies.map((movie, index) => {
           return (
             <div key={index} className="single-movie">
-              <h2>{movie["Title"]}</h2>
+              <Link to={"/movie?title="+movie['Title']}><h2>{movie["Title"]}</h2></Link>
               <span className="pill">{movie["Release Year"]}</span>
             </div>
           );
