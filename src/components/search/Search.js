@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const loadAllMovies = (movie) => {
-    fetch(`${process.env.MOVIE_SPOTS_API}/api/search`, {
+    setLoading(true);
+    fetch(`${process.env.REACT_APP_MOVIE_SPOTS_API}/api/search`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,12 +24,14 @@ const Search = () => {
             self.map((i) => i.Title).indexOf(value.Title) === index
         );
         setMovies(data);
+        setLoading(false);
       });
   };
 
   const handleChange = (event) => {
     if (event.target.value === "") {
       setMovies([]);
+      setLoading(false);
     } else {
       loadAllMovies(event.target.value);
     }
@@ -44,10 +48,13 @@ const Search = () => {
         />
       </div>
       <div className="movies-wrapper">
+        {loading ? <h2>Loading ...</h2> : ""}
         {movies.map((movie, index) => {
           return (
             <div key={index} className="single-movie">
-              <Link to={"/movie?title="+movie['Title']}><h2>{movie["Title"]}</h2></Link>
+              <Link to={"/movie?title=" + movie["Title"]}>
+                <h2>{movie["Title"]}</h2>
+              </Link>
               <span className="pill">{movie["Release Year"]}</span>
             </div>
           );
