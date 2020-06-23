@@ -33,9 +33,9 @@ https://github.com/sharadcodes/movie-spots-backend
 4. Export the environment variable **REACT_APP_MOVIE_SPOTS_API**
   ```bash
   export REACT_APP_MOVIE_SPOTS_API=http://localhost:5000
-  ```
-  or you can use the already deployed backend which is at https://movie-spots.herokuapp.com by running
-  ```bash
+  
+  # OR you can use the already deployed backend with 
+  
   export REACT_APP_MOVIE_SPOTS_API=https://movie-spots.herokuapp.com
   ```
 5. Start the app using `npm start`
