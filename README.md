@@ -34,7 +34,7 @@ https://github.com/sharadcodes/movie-spots-backend
   ```bash
   export REACT_APP_MOVIE_SPOTS_API=http://localhost:5000
   ```
-  **OR** you can use the already deployed backend which is at https://movie-spots.herokuapp.com by running
+  or you can use the already deployed backend which is at https://movie-spots.herokuapp.com by running
   ```bash
   export REACT_APP_MOVIE_SPOTS_API=https://movie-spots.herokuapp.com
   ```
