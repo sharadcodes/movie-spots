@@ -9,7 +9,7 @@ const Movie = (props) => {
   const [loading, setLoading] = useState(true);
 
   const loadAllMovies = (title) => {
-    fetch(`http://localhost:5000/api/search/single?title=${title}`)
+    fetch(`${process.env.MOVIE_SPOTS_API}/api/search/single?title=${title}`)
       .then((res) => res.json())
       .then((data) => {
         setMeta(data[0]);

@@ -6,7 +6,7 @@ const Search = () => {
   const [movies, setMovies] = useState([]);
 
   const loadAllMovies = (movie) => {
-    fetch("http://localhost:5000/api/search", {
+    fetch(`${process.env.MOVIE_SPOTS_API}/api/search`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,6 +40,7 @@ const Search = () => {
           type="text"
           placeholder="Start typing movie name ..."
           onChange={handleChange}
+          autoFocus="autofocus"
         />
       </div>
       <div className="movies-wrapper">
