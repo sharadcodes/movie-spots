@@ -1,4 +1,4 @@
-# Movie Spots
+# Movie Spots Frontend
 Find the shooting spots for your favourate movies
 
 #### Deployed on Netlify
